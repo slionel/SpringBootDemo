@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>demo1</title>
+</head>
+<body>
+<h3>1 取值，直接显示</h3>
+<span th:text="${helloname}"></span>
+
+<h3>2 对象，直接显示</h3>
+<span th:text="${a.name}"></span>
+
+<h3>3 List，循环遍历显示</h3>
+
+<table>
+    <tr>
+        <th>名字</th>
+        <th>电话</th>
+    </tr>
+
+    <tr th:each="c:${cs}">
+        <td th:text="${c.name}"></td>
+        <td th:text="${c.tel}"></td>
+    </tr>
+
+</table>
+</body>
+</html>
