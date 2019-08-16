@@ -1,8 +1,9 @@
 $(document).ready(function(){
-
+    var uid;
     $.post("ucontroller/login3",
         function(data){
             console.log(data);
+            uid = data.uid;
             $("#usernamespan").text(data.loginname);
             if(data.status+"" == "教师"){
                 $("#select3").show();
@@ -100,6 +101,55 @@ $(document).ready(function(){
                 }
             });
         });
+
+
+
+
+
+        $("button[name='uploadmodalbtn']").click(function(){
+            var id = this.id;
+            var hid = id.substr(11);
+
+            $("#uploadbtn").click(function(){
+                var formData = new FormData(document.getElementById("fileUploadForm"));
+                /*var formData = new FormData($("#fileUploadForm")[0]);*/
+                $.ajax({
+                    url:'hcontroller/upload',
+                    type:'POST',
+                    data:formData,
+                    contentType:false,
+                    async:false,
+                    cache:false,
+                    processData:false,
+                    success:function (data) {
+                        if(data.result+"" == "true"){
+                            alert("文件提交成功");
+                            $.getJSON("hcontroller/addmiddletable",{uid:uid,hid:hid},function(json){
+                                console.log(json);
+                                if(json.result+"" == "true"){
+                                    $("#uploadModal").modal("hide");
+                                }
+                            });
+
+                        }
+                        else if(data.result+"" == "false"){
+                            alert("文件提交失败");
+                        }
+                    },
+                    error:function(data){
+                        console.log(data)
+                        if(data.result+"" == "false"){
+                            alert("文件提交失败");
+                        }
+                    }
+                });
+            });
+        });
+
+
+
+
+
     });
 });
 

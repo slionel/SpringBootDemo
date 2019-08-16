@@ -122,8 +122,9 @@ $(document).ready(function(){
                             alert("文件提交成功");
                             $.getJSON("hcontroller/addmiddletable",{uid:uid,hid:hid},function(json){
                                 console.log(json);
-                                console.log(uid);
-                                console.log(hid);
+                                if(json.result+"" == "true"){
+                                    $("#uploadModal").modal("hide");
+                                }
                             });
 
                         }
