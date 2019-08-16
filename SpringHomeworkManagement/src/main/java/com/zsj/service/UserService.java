@@ -5,6 +5,7 @@ import com.zsj.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 /**
  * @author zsj55
@@ -29,5 +30,13 @@ public class UserService {
 
     public User findByName(String name){
         return userRepository.findByName(name);
+    }
+
+    public Optional<User> findById(String uid){
+        return userRepository.findById(uid);
+    }
+
+    public User saveImgName(User user){
+        return userRepository.save(user);
     }
 }

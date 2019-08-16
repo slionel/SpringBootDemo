@@ -3,6 +3,7 @@ package com.zsj.controller;
 import com.zsj.dto.HomeworkIsSubmitDTO;
 import com.zsj.dto.HomeworkRankDTO;
 import com.zsj.entity.Homework;
+import com.zsj.entity.User;
 import com.zsj.entity.UserHomework;
 import com.zsj.service.HomeworkService;
 import com.zsj.utils.Keyutils;
@@ -168,18 +169,6 @@ public class HomeworkController {
         return map;
     }
 
-    @RequestMapping("gethid")
-    public Map getHomeworkId(HttpServletRequest request){
-        Map map = new HashMap();
-        String hid = request.getParameter("hid");
-        System.out.println("---------"+hid);
-        map.put("hid",hid);
-        System.out.println("=========="+map.get("hid"));
-        return map;
-    }
-
-
-
 
     @RequestMapping("addmiddletable")
     public Map addMiddleTable(HttpServletRequest request){
@@ -202,6 +191,9 @@ public class HomeworkController {
         }
         return map;
     }
+
+
+
     /*@RequestMapping("submitdetail/{hid}")
     public List<HomeworkIsSubmitDTO> getHomeworkDetailByHid(@PathVariable("hid") String hid){
         return homeworkService.getHomeworkDetailByHid(hid);

@@ -3,17 +3,16 @@ package com.zsj.controller;
 import com.zsj.service.UserService;
 import com.zsj.entity.User;
 import com.zsj.utils.Keyutils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * @author zsj55
@@ -71,6 +70,7 @@ public class UserController {
         User user = userService.findByName(loginName);
         session.setAttribute("status",user.getStatus());
         session.setAttribute("uid",user.getId());
+        session.setAttribute("sex",user.getSex());
     }
 
     @RequestMapping("login3")
@@ -80,32 +80,74 @@ public class UserController {
         String loginname = (String) session.getAttribute("name");
         String status = (String) session.getAttribute("status");
         String uid = (String) session.getAttribute("uid");
+        String sex = (String) session.getAttribute("sex");
         map.put("loginname",loginname);
         map.put("status",status);
         map.put("uid",uid);
+        map.put("sex",sex);
         return map;
     }
 
+    @RequestMapping("getbyid")
+    public User getById(HttpServletRequest request){
+        List<User> userList = new ArrayList<User>();
+        String uid = request.getParameter("uid");
+        Optional<User> optionalUser = userService.findById(uid);
+        User user = optionalUser.get();
+        return  user;
+    }
 
-
-
-
-
-
-
-    /*@RequestMapping("register")
-    public Map register(@RequestBody  User user){
-        boolean rs = false;
+    @RequestMapping("updatedata")
+    public Map addFileName(HttpServletRequest request){
         Map map = new HashMap();
-        user.setId(Keyutils.genUniqueKey());
-
-        if(userService.register(user).getId() != null){
+        boolean rs = false;
+        String uid = request.getParameter("uid");
+        String fileName = request.getParameter("fileName");
+        String userName = request.getParameter("username");
+        String pwd = request.getParameter("pwd");
+        int age = Integer.parseInt(request.getParameter("age"));
+        String sex = request.getParameter("sex");
+        String status = request.getParameter("status");
+        User user = new User();
+        user.setId(uid);
+        user.setImgId(fileName);
+        user.setAge(age);
+        user.setPwd(pwd);
+        user.setName(userName);
+        user.setSex(sex);
+        user.setStatus(status);
+        if(userService.saveImgName(user).getId() != null){
             rs = true;
-            map.put("rs",rs);
+            map.put("result",rs);
         }
         else{
-            map.put("rs",rs);
+            map.put("result",rs);
+        }
+
+        return map;
+    }
+
+    @RequestMapping("imgupload")
+    public Map imagUpload(@RequestParam MultipartFile file, HttpServletRequest request){
+        Map map = new HashMap();
+        boolean rs = false;
+        if(!file.isEmpty()){
+            String fileName = System.currentTimeMillis()+file.getOriginalFilename();
+            String savePath = "C:\\Users\\zsj55\\Desktop\\头像文件";
+            map.put("fileName",fileName);
+            File dest = new File(savePath+File.separator+fileName);
+            try {
+                file.transferTo(dest);
+                rs = true;
+                map.put("result",rs);
+            } catch (IOException e) {
+                e.printStackTrace();
+                map.put("result",rs);
+            }
+        }
+        else if (file.isEmpty()){
+            map.put("result",rs);
         }
         return map;
-    }*/
+    }
 }

@@ -1,4 +1,5 @@
 $("document").ready(function(){
+    var uid;
     function SimpleDateFormat(pattern) {
         var fmt = new Object();
         fmt.pattern = pattern;
@@ -56,18 +57,26 @@ $("document").ready(function(){
     $.post("ucontroller/login3",
         function(data){
             console.log(data);
+            uid = data.uid;
             $("#usernamespan").text(data.loginname);
             if(data.status+"" == "教师"){
                 $("#select3").show();
                 $("#select4").show();
             }
+
+
+            $.getJSON("ucontroller/getbyid",{uid:uid},function(json){
+                var fileName = json.imgId;
+                console.log('/Path/'+fileName);
+                $("#headuserimg").attr("src","http://localhost:8082/homework/image/"+fileName);
+            });
+
+
         }, "json");
 
     $("#deletesearchbtn").click(function(){
         var searchDateVal = $("#dateserarch").val();
         var searchTypeVal = $("#typeserarch").val();
-        console.log(searchDateVal);
-        console.log(searchTypeVal);
         $.getJSON("hcontroller/getbydateandtype",{opentime:searchDateVal, type:searchTypeVal},function(json){
             console.log(json);
             if(json.length == 0){

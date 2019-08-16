@@ -1,37 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--JavaScript-->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+    <link rel="stylesheet" href="assets/css/demo.css">
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 </head>
+
 <body>
-<!-- LEFT SIDEBAR -->
-<div id="sidebar-nav" class="sidebar">
-    <div class="sidebar-scroll">
-        <nav>
-            <ul class="nav">
-                <li><a href="table.html" class="active"><i class="lnr lnr-dice"></i> <span>ProductTable</span></a></li>
-                <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-                <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
-                <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
-                <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
-                <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
-                <li>
-                    <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                    <div id="subPages" class="collapse ">
-                        <ul class="nav">
-                            <li><a href="login.html" class="">Login</a></li>
-                            <li><a href="page-profile.html" class="">Profile</a></li>
-                            <li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
-                <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
-            </ul>
-        </nav>
+<!-- WRAPPER -->
+<div id="wrapper">
+    <!-- LEFT SIDEBAR -->
+    <div id="sidebar-nav" class="sidebar">
+        <div class="sidebar-scroll">
+            <nav>
+                <ul class="nav">
+                    <li><a href="table.html" class=""><i class="lnr lnr-dice"></i> <span>今日竞赛</span></a></li>
+                    <li><a href="table2.html" class=""><i class="lnr lnr-dice"></i> <span>今日结对</span></a></li>
+                    <li><a href="all.html" class=""><i class="lnr lnr-dice"></i> <span>所有作业</span></a></li>
+                    <li><a href="add.html" id = "select3" style="display: none" class=""><i class="lnr lnr-plus-circle"></i> <span>布置作业</span></a></li>
+                    <li><a href="modified.html" id = "select4" style="display: none" class=""><i class="lnr lnr-pencil"></i> <span>修改作业</span></a></li>
+                    <li><a href="rank.html" class=""><i class="lnr lnr-chart-bars"></i> <span>作业排行</span></a></li>
+                    <li>
+                        <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                        <div id="subPages" class="collapse ">
+                            <ul class="nav">
+                                <li><a href="login.html" class="">Login</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
+    <!-- END LEFT SIDEBAR -->
+    <!-- Javascript -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="assets/scripts/klorofil-common.js"></script>
+
 </div>
-<!-- END LEFT SIDEBAR -->
 </body>
+
 </html>

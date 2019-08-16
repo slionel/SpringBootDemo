@@ -19,6 +19,15 @@ public class User {
     private String sex;
     @Column(length = 2)
     private String status;
+    private String imgId;
+
+    public String getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(String imgId) {
+        this.imgId = imgId;
+    }
 
     public String getId() {
         return id;
