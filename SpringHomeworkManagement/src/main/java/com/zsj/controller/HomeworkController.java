@@ -7,6 +7,7 @@ import com.zsj.entity.User;
 import com.zsj.entity.UserHomework;
 import com.zsj.service.HomeworkService;
 import com.zsj.utils.Keyutils;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -192,6 +193,11 @@ public class HomeworkController {
         return map;
     }
 
+    @RequestMapping("page")
+    public Page<Homework> page(HttpServletRequest request){
+        int pageStart = Integer.parseInt(request.getParameter("start"));
+        return homeworkService.pageAll(pageStart,5);
+    }
 
 
     /*@RequestMapping("submitdetail/{hid}")

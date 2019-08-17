@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap 实例</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="js/page.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>响应式表格</h2>
+    <p>.table-responsive 类用于创建响应式表格：在屏幕宽度小于 992px 时会创建水平滚动条，如果可视区域宽度大于 992px 则显示不同效果（没有滚动条）:</p>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>productName</th>
+                <th>productPrice</th>
+                <th>productType</th>
+            </tr>
+            </thead>
+            <tbody id="databody"></tbody>
+        </table>
+     </div>
+
+
+
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <ul class="pagination">
+
+            </ul>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+
+</body>
+</html>

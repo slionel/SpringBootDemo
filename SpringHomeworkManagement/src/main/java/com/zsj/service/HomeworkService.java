@@ -8,6 +8,9 @@ import com.zsj.repository.DTODao;
 import com.zsj.repository.HomeworkRepository;
 import com.zsj.repository.UserHomeworkRepository;
 import com.zsj.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -101,4 +104,9 @@ public class HomeworkService {
         return userHomeworkRepository.save(userHomework);
     }
 
+    public Page<Homework> pageAll(int page, int limit){
+        Pageable pageable = PageRequest.of(page,limit);
+        Page<Homework> pageInfo = homeworkRepository.findAll(pageable);
+        return pageInfo;
+    }
 }
