@@ -1,4 +1,5 @@
 $("document").ready(function(){
+    var currentPages = 0;
     var uid;
     function SimpleDateFormat(pattern) {
         var fmt = new Object();
@@ -70,51 +71,95 @@ $("document").ready(function(){
                 console.log('/Path/'+fileName);
                 $("#headuserimg").attr("src","http://localhost:8082/homework/image/"+fileName);
             });
-
-
-
-
         }, "json");
+
 
     $("#searchbtn").click(function(){
         var searchDateVal = $("#dateserarch").val();
         var searchTypeVal = $("#typeserarch").val();
         console.log(searchDateVal);
         console.log(searchTypeVal);
-        $.getJSON("hcontroller/getbydateandtype",{opentime:searchDateVal, type:searchTypeVal},function(json){
-            console.log(json);
-            if(json.length == 0){
-                $("#allbody").empty();
-                alert("未查询到结果");
-            }
-            else{
-                $("#allbody").empty();
+        getData();
 
-                for(var i = 0; i < json.length; i++){
+
+
+
+        function getData() {
+            $.getJSON("hcontroller/getbydateandtype",{page:currentPages, opentime:searchDateVal, type:searchTypeVal}, function (json) {
+                $("#allbody").empty();
+                for(var i = 0; i < json.content.length; i++){
                     $("#allbody").append(
-                        "<tr id='tridval1"+json[i].hid+"'>"+
-                        "<td>" + json[i].hid + "</td>"+
-                        "<td>" + json[i].title + "</td>"+
-                        "<td>" + json[i].content + "</td>"+
-                        "<td>" + sdf.format(json[i].openTime) + "</td>"+
-                        "<td>" + json[i].type + "</td>"+
+                        "<tr>" +
+                        "<td>"+json.content[i].hid+"</td>" +
+                        "<td>"+json.content[i].title+"</td>" +
+                        "<td>"+json.content[i].content+"</td>" +
+                        "<td>"+json.content[i].openTime+"</td>" +
+                        "<td>"+json.content[i].type+"</td>" +
                         "</tr>"
                     );
                 }
-            }
+                var totalPages = json.totalPages;
+                $(".pagination").empty();
+                $(".pagination").append('<li class=""><a class="page-link" href="#" id="firstpage">首页</a></li>');
+                $(".pagination").append('<li class=""><a class="page-link" href="#" id="previouspage">上一页</a></li>');
+                for(var j = 0; j < totalPages; j++){
+                    $(".pagination").append(
+                        '<li class="page-item" id="pageno'+j+'"><a class="page-link" href="#">'+(j+1)+'</a></li>'
+                    );
+                }
+                $(".pagination").append('<li class=""><a class="page-link" href="#" id="nextpage">下一页</a></li>');
+                $(".pagination").append('<li class=""><a class="page-link" href="#" id="lastpage">尾页</a></li>');
 
 
+                //显示当前页数
+                $(".page-item").removeClass("active");
+                $("#pageno"+currentPages).addClass("active");
+
+                //下一页
+                $("#nextpage").click(function () {
+                    if(currentPages < totalPages-1){
+                        var curr = new Number(currentPages)+1;
+                        currentPages = curr;
+                        getData();
+                    }
+                    else{
+                        alert("这是最后一页");
+                    }
+                });
 
 
+                //上一页
+                $("#previouspage").click(function () {
+                    if(currentPages > 0){
+                        var curr = new Number(currentPages);
+                        currentPages = curr - 1;
+                        getData();
+                    }
+                    else{
+                        alert("这是第一页");
+                    }
+                });
 
-            $("button[name='modbtn']").click(function(){
-                var modbtnid = this.id;
-                var id = modbtnid.substr(6);
-                $("#trid2"+id).show();
-                $("#tridval1"+id).hide();
+
+                //点击页数
+                $(".page-item").click(function () {
+                    var id = this.id;
+                    currentPages = id.substr(6);
+                    getData();
+                });
+
+                //尾页
+                $("#lastpage").click(function () {
+                    currentPages = totalPages - 1;
+                    getData();
+                });
+
+                //首页
+                $("#firstpage").click(function () {
+                    currentPages = 0;
+                    getData();
+                });
             });
-
-        });
-
+        }
     });
 });

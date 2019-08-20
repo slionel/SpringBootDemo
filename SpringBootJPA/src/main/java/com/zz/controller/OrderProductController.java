@@ -4,6 +4,7 @@ import com.zz.entity.OrderProduct;
 import com.zz.service.OrderProductService;
 import com.zz.utils.Keyutils;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,11 @@ public class OrderProductController {
     public Page<OrderProduct> pageTest(HttpServletRequest request){
         int startPage = Integer.parseInt(request.getParameter("page"));
         return orderProductService.findAll(startPage,5);
+    }
+
+    @RequestMapping("fbian/{id}/{name}")
+    public OrderProduct findByIdAndName(@PathVariable("id") String id, @PathVariable("name") String name){
+        return orderProductService.findByIdAndName(id,name);
     }
 
 }

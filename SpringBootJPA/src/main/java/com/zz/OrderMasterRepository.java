@@ -1,4 +1,4 @@
-package com.zz.repository;
+package com.zz;
 
 import com.zz.entity.OrderMaster;
 import org.springframework.data.repository.CrudRepository;

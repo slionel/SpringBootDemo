@@ -8,6 +8,8 @@ import com.zsj.entity.UserHomework;
 import com.zsj.service.HomeworkService;
 import com.zsj.utils.Keyutils;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -69,20 +71,21 @@ public class HomeworkController {
     }
 
     @RequestMapping("getbydateandtype")
-    public List<Homework> getByDate(HttpServletRequest request){
-        List<Homework> homeworkList = new ArrayList<Homework>();
+    public Page<Homework> getByDateAndType(HttpServletRequest request){
+        int startPage = Integer.parseInt(request.getParameter("page"));
+        Pageable pageable = PageRequest.of(startPage,5);
+        java.sql.Date openTime = new java.sql.Date(0);
         String getDate = request.getParameter("opentime");
         String type = request.getParameter("type");
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date date = sdf.parse(getDate);
-            java.sql.Date openTime = new java.sql.Date(date.getTime());
-            homeworkList = homeworkService.findAll(type,openTime);
+            openTime = new java.sql.Date(date.getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return homeworkList;
+        return homeworkService.findAll(type,openTime,pageable);
     }
 
     @RequestMapping("delete")
@@ -144,7 +147,8 @@ public class HomeworkController {
     @RequestMapping("rank")
     public List<HomeworkRankDTO> rank(HttpServletRequest request){
         String type = request.getParameter("typeserarch");
-        return homeworkService.getHomeworkRankByType(type);
+        int page = Integer.parseInt(request.getParameter("page"));
+        return homeworkService.getHomeworkRankByType(type,page);
     }
 
     @RequestMapping("upload")

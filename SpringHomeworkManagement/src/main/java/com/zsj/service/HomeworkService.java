@@ -37,6 +37,10 @@ public class HomeworkService {
         return (List<Homework>) homeworkRepository.findByTypeAndOpenTime(type,openTime);
     }
 
+    public Page<Homework> findAll(String type, Date openTime, Pageable pageable){
+        return homeworkRepository.findByTypeAndOpenTime(type, openTime, pageable);
+    }
+
     public Homework add(Homework homework){
         return homeworkRepository.save(homework);
     }
@@ -79,10 +83,11 @@ public class HomeworkService {
         return dtoList;
     }
 
-    public List<HomeworkRankDTO> getHomeworkRankByType(String type){
+    public List<HomeworkRankDTO> getHomeworkRankByType(String type, int page){
         int rank = 1;
         List<HomeworkRankDTO> rankDTOList = new ArrayList<HomeworkRankDTO>();
         List<Map<String, Object>> mapList = dtoDao.queryHomeworkRankDTOListMap(type);
+
         for(int i = 0; i < mapList.size(); i++){
 
             HomeworkRankDTO homeworkRankDTO = new HomeworkRankDTO();

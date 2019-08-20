@@ -1,12 +1,11 @@
 package com.zz.service;
 
 import com.zz.entity.OrderMaster;
-import com.zz.repository.OrderMasterRepository;
+import com.zz.OrderMasterRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class OrderService {

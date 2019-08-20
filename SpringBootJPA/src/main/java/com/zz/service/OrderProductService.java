@@ -1,7 +1,7 @@
 package com.zz.service;
 
 import com.zz.entity.OrderProduct;
-import com.zz.repository.OrderProductRespository;
+import com.zz.OrderProductRespository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,5 +22,9 @@ public class OrderProductService {
         Pageable pageable = PageRequest.of(page,limit);
         Page<OrderProduct> pageinfo = orderProductRespository.findAll(pageable);
         return pageinfo;
+    }
+
+    public OrderProduct findByIdAndName(String id, String name){
+        return orderProductRespository.findByIdAndName(id, name);
     }
 }
