@@ -2,10 +2,16 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBootAngular" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringBootBasic" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringBootJPA" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBootMybatis" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBootRedisCache" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringBootThymeleaf" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringHomeworkManagement" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringbootRedis" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringbootRedisCache" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringbootRedisCache" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

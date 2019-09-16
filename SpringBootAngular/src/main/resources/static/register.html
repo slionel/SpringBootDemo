@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="registerApp" ng-controller="registerCtrl">
+<label>用户名</label>
+<input type="text" id="registerUsername" ng-model="registerUsername" required/>
+<span style="color:red" ng-show="registerUsername.$dirty&&registerUsername.$invalid">
+    <span ng-show="registerUsername.$error.required">用户名是必须的</span>
+</span>
+<br/><br/>
+<label>密码</label>
+<input type="password" id="registerPassword" ng-model="registerPassword" required/>
+<br/><br/>
+<label>重复密码</label>
+<input type="password" id="registerPasswordAgain" ng-model="registerPasswordAgain" required/>
+<br/>
+<br/>
+<button ng-click="registerBtn()">注册</button>
+
+
+<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+<script src="js/register.js"></script>
+</body>
+</html>

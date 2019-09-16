@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="loginApp" ng-controller="loginCtrl">
+<label>用户名</label>
+<input type="text" id="loginUsername" ng-model="loginUsername" required/>
+<span style="color:red" ng-show="loginUsername.$dirty&&loginUsername.$invalid">
+    <span ng-show="loginUsername.$error.required">用户名是必须的</span>
+</span>
+<br/><br/>
+<label>密码</label>
+<input type="password" id="loginPassword" ng-model="loginPassword" required/>
+<br/><br/>
+<button ng-click="loginBtn()">登录</button>
+
+
+<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

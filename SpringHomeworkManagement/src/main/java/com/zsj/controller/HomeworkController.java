@@ -72,6 +72,7 @@ public class HomeworkController {
 
     @RequestMapping("getbydateandtype")
     public Page<Homework> getByDateAndType(HttpServletRequest request){
+        //显示第几页
         int startPage = Integer.parseInt(request.getParameter("page"));
         Pageable pageable = PageRequest.of(startPage,5);
         java.sql.Date openTime = new java.sql.Date(0);

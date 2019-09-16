@@ -6,19 +6,33 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SpringHomeworkManagement" />
-        <module name="SpringBootBasic" />
-        <module name="SpringBootJPA" />
+        <module name="SpringBootRedisCache" />
+        <module name="SpringBootAngular" />
+        <module name="SpringbootRedis" />
         <module name="SpringBootThymeleaf" />
+        <module name="SpringHomeworkManagement" />
+        <module name="SpringBootMybatis" />
+        <module name="SpringBootJPA" />
+        <module name="SpringBootBasic" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MemberManagement" target="1.8" />
+      <module name="SpringbootRedisCache" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="MemberManagement" options="-parameters" />
+      <module name="SpringBootAngular" options="-parameters" />
       <module name="SpringBootBasic" options="-parameters" />
       <module name="SpringBootJPA" options="-parameters" />
+      <module name="SpringBootMybatis" options="-parameters" />
+      <module name="SpringBootRedisCache" options="-parameters" />
       <module name="SpringBootThymeleaf" options="-parameters" />
       <module name="SpringHomeworkManagement" options="-parameters" />
+      <module name="SpringbootRedis" options="-parameters" />
+      <module name="SpringbootRedisCache" options="-parameters" />
     </option>
   </component>
 </project>

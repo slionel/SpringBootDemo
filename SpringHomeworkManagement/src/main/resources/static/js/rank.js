@@ -1,4 +1,4 @@
-$(document).ready(function(){
+getbydateandtype$(document).ready(function(){
     var uid;
     $.post("ucontroller/login3",
         function(data){
